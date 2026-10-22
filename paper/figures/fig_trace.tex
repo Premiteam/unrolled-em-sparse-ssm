@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1, horizontal sep=17mm},
+  width=0.475\textwidth, height=4.0cm, xmin=0, xmax=60, xlabel={number of E-steps},
+  every axis plot/.append style={mark size=1.3pt}, unbounded coords=jump]
+\nextgroupplot[ymode=log, ymin=5e-10, ymax=0.3,
+  ytick={1e-9,1e-7,1e-5,1e-3,1e-1}, yticklabels={\tenexp{-9},\tenexp{-7},\tenexp{-5},\tenexp{-3},\tenexp{-1}}, yminorticks=false,
+  ylabel={relative objective gap},
+  legend to name=traceleg, legend columns=4, legend style={/tikz/every even column/.append style={column sep=3mm}}]
+\addplot[mProp, mark repeat=4] table[x=e,y=g] {data/distR_prop.csv};
+\addplot[mEM, mark repeat=4] table[x=e,y=g] {data/distR_em.csv};
+\addplot[mSQ, mark repeat=4] table[x=e,y=g] {data/distR_sq.csv};
+\addplot[mDA, mark repeat=4, mark phase=2] table[x=e,y=g] {data/distR_da.csv};
+\legend{Proposed, EM, SQUAREM, DAAREM}
+\draw[black!40, thin, densely dashed] (axis cs:16,5e-10) -- (axis cs:16,0.3);
+\nextgroupplot[ymode=log, ymin=5e-5, ymax=2, ytick={1e-4,1e-3,0.01,0.1,1}, yticklabels={\tenexp{-4},\tenexp{-3},0.01,0.1,1}, yminorticks=false,
+  ylabel={relative distance to reference}]
+\addplot[mProp, mark repeat=4] table[x=e,y=d] {data/distR_prop.csv};
+\addplot[mEM, mark repeat=4] table[x=e,y=d] {data/distR_em.csv};
+\addplot[mSQ, mark repeat=4] table[x=e,y=d] {data/distR_sq.csv};
+\addplot[mDA, mark repeat=4, mark phase=2] table[x=e,y=d] {data/distR_da.csv};
+\addplot[refline, forget plot] coordinates {(0,0.01) (60,0.01)};
+\draw[black!40, thin, densely dashed] (axis cs:16,5e-5) -- (axis cs:16,2);
+\end{groupplot}
+\node[font=\small, anchor=north] at ($(group c1r1.south)+(0,-0.85cm)$) {(a) Objective gap};
+\node[font=\small, anchor=north] at ($(group c2r1.south)+(0,-0.85cm)$) {(b) Distance to the reference solution};
+\node[anchor=north] at ($(group c1r1.south)!0.5!(group c2r1.south)+(0,-1.35cm)$) {\pgfplotslegendfromname{traceleg}};
+\end{tikzpicture}

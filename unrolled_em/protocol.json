@@ -1,0 +1,143 @@
+{
+ "name": "large_sparse_stage0",
+ "seed_root": 20260926,
+ "q": 0.1,
+ "T_val": 500,
+ "n_dev": 2,
+ "n_test": 8,
+ "lambda_c": [
+  0,
+  0.001,
+  0.003,
+  0.01,
+  0.03,
+  0.1,
+  0.3
+ ],
+ "ref": {
+  "max_E": 200,
+  "rel_tol": 1e-09
+ },
+ "lambda_ref_max_E": 100,
+ "arm_max_E": 100,
+ "tau_mult": 1.1,
+ "tau_abs": 0.0001,
+ "arms": [
+  {
+   "name": "EM_exact_K1",
+   "estep": "exact",
+   "K": 1
+  },
+  {
+   "name": "EM_exact_K10",
+   "estep": "exact",
+   "K": 10
+  },
+  {
+   "name": "EM_exact_K50",
+   "estep": "exact",
+   "K": 50
+  },
+  {
+   "name": "EM_ss_K1",
+   "estep": "ss",
+   "K": 1
+  },
+  {
+   "name": "EM_ss_K10",
+   "estep": "ss",
+   "K": 10
+  },
+  {
+   "name": "EM_ss_K50",
+   "estep": "ss",
+   "K": 50
+  },
+  {
+   "name": "SQ_exact_K50",
+   "estep": "squarem",
+   "K": 50
+  }
+ ],
+ "cells": [
+  {
+   "name": "F32_100",
+   "n": 32,
+   "T": 100,
+   "obs": "full",
+   "snr_db": 0
+  },
+  {
+   "name": "F32_500",
+   "n": 32,
+   "T": 500,
+   "obs": "full",
+   "snr_db": 0
+  },
+  {
+   "name": "F64_100",
+   "n": 64,
+   "T": 100,
+   "obs": "full",
+   "snr_db": 0
+  },
+  {
+   "name": "F64_500",
+   "n": 64,
+   "T": 500,
+   "obs": "full",
+   "snr_db": 0
+  },
+  {
+   "name": "F128_100",
+   "n": 128,
+   "T": 100,
+   "obs": "full",
+   "snr_db": 0
+  },
+  {
+   "name": "F128_500",
+   "n": 128,
+   "T": 500,
+   "obs": "full",
+   "snr_db": 0
+  },
+  {
+   "name": "F64_500_hi",
+   "n": 64,
+   "T": 500,
+   "obs": "full",
+   "snr_db": 10
+  },
+  {
+   "name": "P32_500",
+   "n": 32,
+   "T": 500,
+   "obs": "partial",
+   "snr_db": 0
+  },
+  {
+   "name": "P64_500",
+   "n": 64,
+   "T": 500,
+   "obs": "partial",
+   "snr_db": 0
+  }
+ ],
+ "verdict": {
+  "k1_max_median_E": 5,
+  "k2_min_systems": 6,
+  "big_cells": [
+   "F64_100",
+   "F64_500",
+   "F128_100",
+   "F128_500",
+   "F64_500_hi",
+   "P64_500"
+  ],
+  "n128_cells": [
+   "F128_100",
+   "F128_500"
+  ]
+ }
+}

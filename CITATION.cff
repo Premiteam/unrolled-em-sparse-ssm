@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper."
+title: "Unrolled Expectation Maximization with Learned Elementwise Extrapolation for Sparse State Space Identification"
+type: software
+license: GPL-2.0-only
+version: "1.0"
+abstract: >-
+  Python implementation of unrolled expectation maximization with a learned elementwise
+  extrapolation, a safeguard and a handover to a bounded SQUAREM for estimating sparse transition
+  matrices of linear Gaussian state space models, together with the classical baselines (EM,
+  SQUAREM, DAAREM, quasi-Newton EM), all simulation scripts of the accompanying paper, a script that
+  computes every table and figure of the paper from the raw results, and the figure sources.
+keywords:
+  - expectation maximization
+  - algorithm unrolling
+  - learned optimization
+  - state space model
+  - sparse system identification
+  - Kalman smoother
+  - extrapolation
+authors:
+  - family-names: Li
+    given-names: Ruiqi
+    affiliation: "Xi'an Jiaotong-Liverpool University"

@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+\begin{axis}[width=\linewidth, height=3.8cm,
+  xtick={0,...,6}, xticklabels={2,1.5,1.2,1.1,1.05,1.02,1.01}, xmin=-0.3, xmax=6.3,
+  ymode=log, ymin=1.5, ymax=80, ytick={2,5,10,20,50}, yticklabels={2,5,10,20,50}, yminorticks=false,
+  xlabel={accuracy target $\alpha$}, ylabel={median E-steps},
+  legend style={at={(0.5,1.03)}, anchor=south, /tikz/every even column/.append style={column sep=3mm}}, legend columns=2]
+\addplot[mProp] table[x=i,y=prop] {data/tol_F128.csv};
+\addplot[mEM] table[x=i,y=em] {data/tol_F128.csv};
+\addplot[mSQ] table[x=i,y=sq] {data/tol_F128.csv};
+\addplot[mDA] table[x=i,y=da] {data/tol_F128.csv};
+\legend{Proposed, EM, SQUAREM, DAAREM}
+\end{axis}
+\end{tikzpicture}

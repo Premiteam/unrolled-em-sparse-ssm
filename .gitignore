@@ -1,0 +1,15 @@
+results/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+paper/figures.log

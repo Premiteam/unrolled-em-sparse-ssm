@@ -1,0 +1,33 @@
+\begin{tikzpicture}[
+  font=\footnotesize, >={Stealth[length=1.6mm]},
+  blk/.style={draw=cInk, thick, minimum height=8mm, align=center, inner sep=1.5pt},
+  lrn/.style={blk, draw=cProp, fill=cProp!12, minimum width=10.6mm, minimum height=7mm},
+  lab/.style={font=\footnotesize\bfseries, anchor=west, inner sep=0pt},
+  line/.style={->, draw=cInk, thick},
+]
+\node[lab] at (0,0.85) {(a) Classical EM};
+\node[blk, minimum width=21mm] (e) at (2.05,0) {E-step\\Kalman smoother};
+\node[blk, minimum width=17mm] (m) at (5.05,0) {M-step\\Lasso};
+\node[inner sep=1pt] (a0) at (0.22,0) {$A_0$};
+\draw[line] (a0) -- (e);
+\draw[line] (e) -- node[midway, above, inner sep=1.5pt] {$\Phi,\Psi$} (m);
+\draw[line] (m) -- (7.1,0) node[right, inner sep=1pt] {$\hat A$};
+\draw[line] (6.45,0) -- (6.45,-0.72) -- node[below, inner sep=1.5pt] {$A_{k+1}=\mathcal{M}(A_k)$} (2.05,-0.72) -- (e.south);
+\begin{scope}[yshift=-2.05cm]
+\node[lab] at (0,0.85) {(b) Unrolled EM};
+\node[inner sep=1pt] (b0) at (0.22,0) {$A_0$};
+\node[lrn] (l1) at (1.35,0) {Layer 1};
+\node[lrn] (l2) at (2.70,0) {Layer 2};
+\node[lrn] (l3) at (4.05,0) {Layer 3};
+\node[lrn] (l4) at (5.40,0) {Layer 4};
+\draw[line] (b0) -- (l1);
+\draw[line] (l1) -- (l2);
+\draw[line] (l2) -- (l3);
+\draw[line] (l3) -- (l4);
+\foreach \i in {1,2,3,4} {\node[below=0.6mm of l\i.south west, anchor=north west, inner sep=0.5pt] {$\vartheta_\i$};}
+\draw[line] (l4.east) .. controls +(0.55,0.05) and +(0.25,0.6) .. (l4.north east) node[pos=0.55, right, inner sep=1.5pt] {reused};
+\node[blk, minimum width=17mm, minimum height=7mm, below=6.5mm of l4] (sq) {SQUAREM,\\bounded step};
+\draw[line] (l4) -- node[midway, right, inner sep=1.5pt, align=left] {after $\nu$\\rejections} (sq);
+\draw[line] (sq) -- ++(1.25,0) node[right, inner sep=1pt] {$\hat A$};
+\end{scope}
+\end{tikzpicture}

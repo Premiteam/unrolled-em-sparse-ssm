@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+\begin{axis}[width=\linewidth, height=4.4cm, ybar=0pt, bar width=4.2pt, xtick=data, xticklabels from table={data/motiv_steps.csv}{setting},
+  xmin=-0.6, xmax=4.6, ymin=0, ymax=15, ytick={0,2,...,12}, enlarge x limits=false, ylabel={median step},
+  legend style={at={(0.02,0.98)}, anchor=north west, fill=white, fill opacity=0.85, text opacity=1}, legend columns=2]
+\addplot[fill=cMuted, draw=white, area legend] table[x=x, y=idd] {data/motiv_steps.csv};
+\addplot[fill=cProp, draw=white, area legend] table[x=x, y=lrd] {data/motiv_steps.csv};
+\addplot[fill=cMuted!40, draw=white, area legend] table[x=x, y=ido] {data/motiv_steps.csv};
+\addplot[fill=cProp!40, draw=white, area legend] table[x=x, y=lro] {data/motiv_steps.csv};
+\legend{ideal diag., learned diag., ideal off-diag., learned off-diag.}
+\end{axis}
+\end{tikzpicture}

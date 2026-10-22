@@ -1,0 +1,32 @@
+Unrolled EM with Learned Elementwise Extrapolation for Sparse State Space Identification
+Copyright (C) 2026 Ruiqi Li
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU General Public License version 2 as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License in the file LICENSE for more details.
+
+
+Code derived from third-party software
+--------------------------------------
+
+1. unrolled_em/daarem.py
+
+   The functions damping_find and daarem_core are a Python translation of the files
+   R/DampingFind.R and R/daarem_base_objfn.R of the R package daarem, version 0.7,
+   by Nicholas Henderson and Ravi Varadhan.
+   License of the original: GNU General Public License version 2.
+   Source: https://CRAN.R-project.org/package=daarem
+   Changes: translated to Python and adapted to the sparse state space model (September 2026).
+
+2. unrolled_em/experiments/exp_sqbt.py, function sq_pkg
+
+   Python translation of the function squarem1 of the R package SQUAREM by Ravi Varadhan.
+   License of the original: GNU General Public License version 2 or later.
+   Source: https://CRAN.R-project.org/package=SQUAREM
+   Changes: translated to Python and adapted to the sparse state space model (October 2026).
+
+Because of these two files, the repository as a whole is distributed under the GNU General Public
+License version 2 only.

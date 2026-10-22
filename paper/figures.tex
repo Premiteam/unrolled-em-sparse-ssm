@@ -1,0 +1,41 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,textwidth=181mm,top=20mm,bottom=20mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{groupplots}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\pagestyle{empty}
+\input{figures/figstyle}
+\newcommand{\column}[1]{\begin{minipage}{88.9mm}\centering #1\end{minipage}}
+\begin{document}
+
+\begin{figure}[h]
+\centering
+\column{\input{figures/fig_method}}
+\caption{Classical EM and the unrolled EM algorithm with handover to SQUAREM.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\input{figures/fig_trace}
+\caption{Convergence on a typical F128 test system; the dashed line marks the handover to SQUAREM, and negative gaps are not shown.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\column{\input{figures/fig_tolerance}}
+\caption{Median number of E-steps versus the accuracy target $\alpha$ for F128.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\column{\input{figures/fig_motiv}}
+\caption{Median ideal and learned first steps by class of entries.}
+\end{figure}
+
+\end{document}

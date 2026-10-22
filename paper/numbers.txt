@@ -1,0 +1,186 @@
+== Section IV-A and II-B: reference solutions, scale estimate, steady state fixed point ==
+reference solutions at the cap of 200 E-steps: 49 of 150; predictive error changed by less than 1% over the last 50 E-steps on 47
+scale estimate, median relative error: F32 2.9%, F64 3.0%, F128 1.7%, P32 5.1%, P64 5.0%
+steady state versus exact fixed point, median relative distance: F32 1.2%, F64 1.4%, F128 0.8%, P32 1.0%, P64 1.7%
+selected constant c: F32 0.01, F64 0.01, F128 0.03, P32 0.01, P64 0.01, GE16_1000 0.01
+excess error of the reference solution E(A_R): median 0.019, minimum 0.007; the additive term raises alpha by at most 0.014
+
+== Table III: E-step ratio to the strongest classical method, test set II ==
+F32   2.41 [2.14, 2.69] (SQpkg16_ss)  4 14 9 10  |  2.94 [2.49, 3.54] (SQpkg16_ss)  5 29.5 15 18   [ratio, proposed, EM, SQUAREM, DAAREM]
+F64   2.78 [2.52, 3.05] (SQpkg16_ss)  3 15 10 11  |  3.91 [3.28, 4.61] (SQpkg16_ss)  4 33.5 17.5 23.5   [ratio, proposed, EM, SQUAREM, DAAREM]
+F128  2.77 [2.51, 3.04] (SQbt3_exact)  4.5 25 15 15  |  3.22 [2.68, 3.83] (SQpkg16_ss)  7 49.5 25 32.5   [ratio, proposed, EM, SQUAREM, DAAREM]
+P32   2.00 [1.74, 2.29] (SQpkg_ss)  4 12 8 11  |  1.98 [1.67, 2.34] (SQpkg_ss)  6.5 20 12 16.5   [ratio, proposed, EM, SQUAREM, DAAREM]
+P64   1.83 [1.61, 2.07] (SQbt3_ss)  4.5 14 8.5 13  |  1.82 [1.44, 2.24] (SQbt3_exact)  7 25 13.5 18.5   [ratio, proposed, EM, SQUAREM, DAAREM]
+missed alpha = 1.01 within 100 E-steps (150 systems): proposed 1, SQUAREM 1, DAAREM 9
+full observation: 2.41 to 2.78 at alpha = 1.1, 2.94 to 3.91 at alpha = 1.01; partial observation 1.82 to 2.00
+with SQUAREM (reference implementation, default bound) as the only competitor the ratios are at most 11% larger
+
+== Table VI: median E-steps of the classical variants at alpha = 1.1 / 1.01 ==
+Fallback               9 / 28  9 / 37.5  18 / 44.5  9 / 14.5  9 / 15.5
+Fallback (exact)       9 / 31  9 / 37  17.5 / 38.5  9 / 15  9 / 17.5
+SqS1                   9 / 17.5  10 / 19.5  15 / 23.5  8 / 13  9 / 16
+SqS2                   10 / 19.5  11 / 24  14 / 24.5  8 / 13.5  9 / 14
+SqS3                   9 / 16.5  9 / 19.5  13 / 23  6 / 12  9 / 14
+SqS3 (exact)           9 / 18  9 / 19.5  13 / 25.5  6 / 12  9 / 12
+Reference              9 / 15  10 / 17.5  15 / 25  8 / 12  8.5 / 13.5
+Reference gamma0=16    9 / 13  9 / 16  16 / 23  8 / 12.5  9 / 14.5
+QN, 1 pair             8.5 / 27.5  9 / 36  16 / 43.5  8.5 / 11  9 / 14.5
+QN, 3 pairs            9 / 16  10.5 / 16  17.5 / 35  10 / 13.5  10 / 15
+Proposed               4 / 5  3 / 4  4.5 / 7  4 / 6.5  4.5 / 7
+quasi-Newton EM, median E-steps to 1% distance: 32.5 to 99.5; reference SQUAREM 24 to 50
+
+== Table VII: relative error delta and support F1 when the target is first met (proposed / strongest) ==
+F32   delta 0.398 / 0.406  0.382 / 0.383   F1 0.422 / 0.440  0.450 / 0.461
+F64   delta 0.442 / 0.447  0.425 / 0.427   F1 0.220 / 0.258  0.239 / 0.279
+F128  delta 0.538 / 0.541  0.524 / 0.528   F1 0.471 / 0.480  0.492 / 0.492
+P32   delta 0.875 / 0.881  0.877 / 0.882   F1 0.271 / 0.282  0.277 / 0.287
+P64   delta 0.889 / 0.891  0.889 / 0.893   F1 0.204 / 0.211  0.204 / 0.219
+relative error smaller than the strongest competitor in 10 of 10 cases; F1 lower in 9, by at most 0.040
+reference solutions: relative error F32 0.38, F64 0.43, F128 0.53, P32 0.89, P64 0.90; F1 F32 0.49, F64 0.29, F128 0.50, P32 0.29, P64 0.22
+
+== Table IV: E-step ratios in parameter space, test set II ==
+F32   dist5 1.70 [1.41, 1.96] (SQpkg16_ss)  dist1 1.32 [1.14, 1.50] (SQpkg16_ss)  gap1e-4 1.83 [1.68, 1.96] (SQpkg16_ss)  gap1e-5 1.54 [1.42, 1.66] (SQpkg16_ss)
+F64   dist5 1.93 [1.73, 2.11] (SQpkg16_ss)  dist1 1.23 [1.13, 1.33] (SQpkg16_ss)  gap1e-4 1.88 [1.77, 1.98] (SQpkg16_ss)  gap1e-5 1.50 [1.41, 1.59] (SQpkg16_ss)
+F128  dist5 1.59 [1.14, 2.17] (SQpkg16_ss)  dist1 1.26 [0.99, 1.59] (SQpkg16_ss)  gap1e-4 3.00 [2.67, 3.40] (SQpkg_ss)  gap1e-5 2.68 [2.26, 3.22] (SQpkg_ss)
+P32   dist5 1.61 [1.39, 1.84] (SQpkg_ss)  dist1 1.20 [1.08, 1.32] (SQpkg_ss)  gap1e-4 1.66 [1.43, 1.92] (SQbt3_ss)  gap1e-5 1.40 [1.21, 1.67] (SQpkg_ss)
+P64   dist5 1.53 [1.26, 1.80] (SQpkg16_ss)  dist1 1.23 [1.09, 1.38] (SQpkg16_ss)  gap1e-4 1.66 [1.47, 1.93] (SQbt3_ss)  gap1e-5 1.41 [1.28, 1.57] (SQpkg16_ss)
+missed the 1% distance within 100 E-steps: F32 1, F64 1, F128 11, P32 3, P64 1
+without the handover (layers of Section III, fourth layer reused): ratios at 1% distance F32 1.13, F64 0.76, F128 1.03, P32 0.74, P64 0.70
+reduction of the E-steps to 1% distance by the handover (geometric mean): F32 1.16, F64 1.62, F128 1.22, P32 1.63, P64 1.74
+systems on which the proposed method reached a lower objective than the reference and missed 1% distance: 12 (9 in F128), closest distance 0.062 to 0.682
+
+== Steady state E-step: switch to exact E-steps (Algorithm 1) ==
+switched on F32 3, F64 10, F128 11, P32 6, P64 8 systems (38 of 150), after 37 to 99 E-steps; after alpha = 1.01 had been met on 37 (alpha = 1.01 not met within 100 E-steps on 1); E-step counts at both targets as in Table III: True
+after the switch: within a relative objective gap of 1e-5 on 38, below the reference value on 15, within 1% distance on 0; final distance 1.0% to 32% (median 1.8%)
+F128: switched systems equal the systems that missed 1% distance in Table IV: True
+decrease test failed on 135 of 150 systems (99.6% of failures in SQUAREM cycles), by a relative increase of at most 2.0e-07; first failure at E-step 21 to 99 (latest: F128_500 10, relative increase 9.1e-14), after alpha = 1.01 on 135; within 1% of the reference by then on 121
+systems on which SQUAREM reached alpha = 1.01 within 100 E-steps: SQ_ss_K50 146, SQ_exact_K50 145, SQbt3_ss 148, SQbt3_exact 149
+partial observation, 120 systems: SQ_ss_K50: rho >= 1 at 203 evaluated matrices, undetectable 1, errors 0; EM_ss_K50: rho >= 1 at 0 evaluated matrices, undetectable 0, errors 0; learned_tied_L4: rho >= 1 at 0 evaluated matrices, undetectable 0, errors 0; DAAREM_tun: rho >= 1 at 0 evaluated matrices, undetectable 0, errors 0
+
+== Table VIII: median E-steps at the stop / systems with alpha = 1.01 met ==
+eps 0.0001 Proposed  9 / 26  10 / 29  9.5 / 26  12 / 27  13 / 26
+eps 0.0001 EM        21 / 3  22 / 1  28 / 6  26 / 16  28 / 17
+eps 0.0001 SQUAREM   15 / 14  16 / 10  19 / 6  17 / 22  17.5 / 22
+eps 0.0001 DAAREM    16 / 9  19 / 6  19 / 7  20 / 21  22.5 / 22
+eps 1e-05 Proposed  13 / 28  13 / 29  13 / 27  16 / 30  19 / 28
+eps 1e-05 EM        35.5 / 20  38.5 / 22  47.5 / 15  38.5 / 27  45.5 / 27
+eps 1e-05 SQUAREM   21 / 24  24 / 29  27.5 / 19  22 / 28  25.5 / 28
+eps 1e-05 DAAREM    23 / 17  25 / 18  29 / 15  27 / 27  30 / 27
+eps 1e-6: proposed stopped after 20.5 to 29 E-steps; at these stops all methods met alpha = 1.01 on at least 22 systems
+eps 1e-5, median distance at the stop: Proposed 1.5 to 3.5%; EM 3.5 to 5.6%; SQUAREM 2.2 to 4.9%; DAAREM 2.6 to 5.2%
+
+== Computing time (single process replays) ==
+exact / steady state E-step time: n = 32: 12.2, n = 64: 13.2, n = 128: 9.7, n = 256: 5.7
+steady state E-step / M-step time: n = 32: 3.5, n = 64: 3.4, n = 128: 4.5, n = 256: 7.7
+learned layer / iteration (steady state E-step + M-step): n = 32: 7.0%, n = 64: 6.4%, n = 128: 4.1%, n = 256: 2.0%
+n = 32: alpha 1.1: 2.28 against the faster version (SQpkg16_ss; default 2.41, gamma_0 = 16 2.28)  alpha 1.01: 2.62 against the faster version (SQpkg16_ss; default 2.81, gamma_0 = 16 2.62)
+n = 64: alpha 1.1: 2.69 against the faster version (SQpkg16_ss; default 2.86, gamma_0 = 16 2.69)  alpha 1.01: 3.78 against the faster version (SQpkg16_ss; default 4.13, gamma_0 = 16 3.78)
+n = 128: alpha 1.1: 3.16 against the faster version (SQpkg_ss; default 3.16, gamma_0 = 16 3.23)  alpha 1.01: 3.22 against the faster version (SQpkg16_ss; default 3.24, gamma_0 = 16 3.22)
+n = 256: alpha 1.1: 3.36 against the faster version (SQpkg_ss; default 3.36, gamma_0 = 16 3.39)  alpha 1.01: 4.05 against the faster version (SQpkg16_ss; default 4.09, gamma_0 = 16 4.05)
+time ratio / E-step ratio: 0.94 to 1.04
+separate run (DAAREM and SQUAREM with immediate fallback): n = 32: DAAREM_tun 2.75, SQ_ss_K50 2.46, SQpkg_ss 2.41, DAAREM_tun 3.80, SQ_ss_K50 5.10, SQpkg_ss 2.79; n = 64: DAAREM_tun 3.38, SQ_ss_K50 3.01, SQpkg_ss 2.85, DAAREM_tun 5.99, SQ_ss_K50 8.47, SQpkg_ss 4.12; n = 128: DAAREM_tun 3.51, SQ_ss_K50 3.67, SQpkg_ss 3.12, DAAREM_tun 3.91, SQ_ss_K50 5.28, SQpkg_ss 3.22; n = 256: DAAREM_tun 3.62, SQ_ss_K50 4.49, SQpkg_ss 3.47, DAAREM_tun 5.25, SQ_ss_K50 7.23, SQpkg_ss 4.07
+n = 512: median time 66 s and 87 s; ratios to DAAREM 2.52 and 4.48, to default SQUAREM 2.54 and 3.07, to SQUAREM with gamma_0 = 16 2.57 and 2.96
+training of four layers, minutes: F32 19, F64 22, F128 53, P32 13, P64 15; reference solutions up to 111 minutes; F128 in total 2.7 hours
+
+== GraphEM benchmark (n = 16) and GraphEM outer iteration ==
+n = 16: every method reached alpha = 1.1 within a median of 3 E-steps; ratio to the strongest classical method 1.29 and 1.55
+EM with exact E-step and fully solved M-step (GraphEM outer iteration) / proposed, n = 16: 1.50 [1.36, 1.65] and 2.07 [1.87, 2.29]
+F64: GraphEM outer iteration / proposed 4.46 [4.01, 4.90] at alpha = 1.1, 8.40 [7.03, 9.89] at 1.01, 3.03 [2.67, 3.36] to 1% distance (own reference)
+F128: GraphEM outer iteration / proposed 4.84 [4.28, 5.41] at alpha = 1.1, 6.31 [5.18, 7.58] at 1.01, 2.48 [1.89, 3.25] to 1% distance (own reference)
+along the first 20 EM iterations, monotone FISTA with 50 iterations stops short of the M-step solution by a median of 0.44% and at most 6.3% of the length of the EM update
+
+== Table V: ablation on test set I (E-step ratio of the variant to the learned extrapolation; xi after three E-steps) ==
+F32   best formula 1.75 2.13 xi 3.82 | tuned constants 1.78 2.46 xi 3.94   (best formula ait_t / ait_t)
+F64   best formula 1.37 1.58 xi 3.59 | tuned constants 1.39 1.63 xi 3.58   (best formula ait_t / ait_t)
+F128  best formula 2.34 2.64 xi 3.23 | tuned constants 2.44 3.73 xi 3.39   (best formula mu_t / mu0)
+P32   best formula 1.56 1.51 xi 2.63 | tuned constants 1.80 1.53 xi 3.61   (best formula mu_t / mu_t)
+P64   best formula 1.41 1.55 xi 1.55 | tuned constants 1.46 1.52 xi 2.38   (best formula mu0 / ait_t)
+learned faster than tuned constants on 138 and 132 of 150 systems, than the best formula on 132 and 130 (sign test p = 4.5e-28 at most)
+lower 95% bounds of the E-step ratios in Table V: at least 1.21; of xi: F32 2.83/2.91, F64 2.49/2.48, F128 2.70/2.81, P32 2.05/2.54, P64 0.86/1.37
+F64: target alpha = 1.1 met within three E-steps on 21 of 30 systems
+one pair of constants per class: 1.43 to 3.25 times as many E-steps, slower on 137 and 134 of 150 (sign test p = 5.1e-30 at most)
+linear map of the features: 1.30 to 2.62 times as many, slower on 126 and 128; lower 95% bounds at least 1.09
+
+== Table X: E-step ratio to the strongest classical method with one to six trained layers, test set I ==
+1 layers  1.42 / 1.66  1.90 / 2.04  1.35 / 1.11  1.12 / 1.01  1.12 / 1.13
+2 layers  2.33 / 2.84  3.06 / 4.92  2.45 / 1.44  1.68 / 1.28  1.62 / 1.59
+3 layers  2.46 / 3.20  3.08 / 5.07  3.08 / 2.24  1.94 / 1.69  1.69 / 1.77
+4 layers  2.50 / 3.22  3.08 / 5.13  3.11 / 2.76  2.06 / 1.74  1.73 / 1.86
+5 layers  2.50 / 3.39  3.08 / 5.03  3.07 / 2.65  2.00 / 1.71  1.75 / 1.88
+6 layers  2.50 / 3.36  3.08 / 5.08  3.06 / 3.22  2.01 / 1.85  1.75 / 1.86
+one layer: 1.12 to 1.90 at alpha = 1.1; four layers: 1.73 to 3.11
+starting the bound at gamma_0 = 1 instead of 16 changes the entries by at most 9.5%
+with a single layer the handover came after a median of 3 layer applications
+validation loss of layer l: l = 1: 0.23 to 0.38; l = 4: 0.56 to 0.70; l = 6: 0.65 to 0.74
+
+== Table XI: E-step ratios under distribution shift (F64 and F128, alpha = 1.1 / 1.01) ==
+T x 2                2.58 / 2.78   2.21+ / 2.99   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+T x 4                2.13 / 2.10   1.71+ / 2.28   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+SNR -5 dB            2.19 / 2.35   1.27+ / 1.29   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+SNR +5 dB            1.69+ / 3.20   1.22+ / 0.94   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+2 nonzeros per row   1.90 / 2.45   2.09 / 2.14   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+5 nonzeros per row   2.60 / 3.93   3.21 / 2.49   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+rho(A) = 0.8         2.30 / 5.41   2.45 / 2.66   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+rho(A) = 0.95        2.17 / 2.50   3.38 / 4.54   (+ strongest classical method needs at most five E-steps to alpha = 1.1)
+alpha = 1.01: ratio at least 2.0 in 14 of 16 conditions; with the strongest method above five E-steps (11 conditions) the ratio at alpha = 1.1 is at least 1.90
+F128, SNR +5 dB: SQUAREM median 5 and 6 E-steps to alpha = 1.1 and 1.01; 66 of 89 candidates of the trained layers rejected; ratio at alpha = 1.01 0.94 [0.73, 1.22]
+SNR -5 dB: reference solutions F128 median 61.5 nonzeros, recall 0.04; F64 recall 0.46, ratio at alpha = 1.01 2.35
+
+== Size transfer, n = 256 and n = 512 ==
+transferred models at alpha = 1.1: 32->64 2.82 (native 2.80), 64->128 2.41 (native 2.77), 128->256 3.25 (native 3.02)
+largest loss against native models: 13%
+n = 256: native model 3.02 [2.30, 3.85] and 3.34 [2.28, 4.91]; transferred 3.25 [2.43, 3.96] and 4.02 [2.69, 5.49]
+n = 512 (12 systems, n = 256 model): median 6 and 8 E-steps; SQUAREM 17 and 27.5; ratios 2.46 [1.83, 3.27] and 3.01 [2.13, 4.10]
+
+== Penalty selected for support recovery (F32, F64) ==
+selected c: F32 0.02, F64 0.03, F128 0.03
+F32: 1.88 [1.66, 2.12] and 2.33 [2.01, 2.69]; EM median to alpha = 1.01 14; F1 when met 0.560/0.542, 0.582/0.577; 1% distance 1.19 [0.99, 1.42], missed on 4 (SQUAREM 1)
+F64: 1.88 [1.62, 2.21] and 2.16 [1.76, 2.66]; EM median to alpha = 1.01 8; F1 when met 0.553/0.538, 0.571/0.568; 1% distance 1.23 [0.98, 1.52], missed on 7 (SQUAREM 2)
+
+== Heat conduction networks HF64 and HF128 ==
+HF64: alpha medians (proposed) (2.0, 2.0), all methods within 2; 1% distance: EM 43, proposed 7, strongest SQpkg_ss 17
+   ratios dist5 2.59, dist1 2.31, gap1e-4 2.01, gap1e-5 2.38; layers of F64: 1.31, 1.14, 1.14, 1.09
+   rejected 4 of 169 candidates, handover on 2 systems; reference recall 0.76, relative error 0.37, spectral radius 0.936 to 0.949
+HF128: alpha medians (proposed) (2.0, 2.0), all methods within 2; 1% distance: EM 47, proposed 8, strongest SQpkg_ss 18
+   ratios dist5 2.44, dist1 2.02, gap1e-4 2.25, gap1e-5 2.33; layers of HF64: 2.35, 1.79, 2.21, 2.09
+   rejected 13 of 196 candidates, handover on 6 systems; reference recall 0.72, relative error 0.41, spectral radius 0.944 to 0.949
+
+== Table IX: eigenvalues of the Jacobian of steady state EM at its fixed point ==
+P32   (5 systems) support 96-140  |b1| 0.939-0.984  |b2|/|b1| 0.982-0.997  >=0.95 13-21  >=0.9 36-47
+F32   (5 systems) support 275-454  |b1| 0.953-0.971  |b2|/|b1| 0.993-0.998  >=0.95 44-53  >=0.9 114-140
+F64   (5 systems) support 586-1577  |b1| 0.972-0.989  |b2|/|b1| 0.993-0.998  >=0.95 63-123  >=0.9 206-390
+F128  (3 systems) support 795-1286  |b1| 0.940-0.988  |b2|/|b1| 0.969-0.999  >=0.95 14-78  >=0.9 88-270
+P64   (5 systems) support 178-502  |b1| 0.963-0.991  |b2|/|b1| 0.990-1.000  >=0.95 26-39  >=0.9 70-121
+SQUAREM with immediate fallback (first ten systems): F32 rejected 74%, median gamma -6.7, F64 rejected 84%, median gamma -6.7, F128 rejected 75%, median gamma -7.2
+backtracking SQUAREM (SqS3): first trial accepted in 39 to 50% of cycles; reference implementation: median -gamma 2.6 to 2.9, extrapolations accepted 89 to 100%
+
+== Implementation details ==
+handover: nu = 2, gamma_0 = 16; criterion from 24.8 to 29.3
+the handover changed the E-steps to alpha = 1.01 on 9 of 150 systems
+N_F = 10: up to 85% more E-steps for the proposed method; from N_F = 30 on, EM within 2%, proposed within 9%, SQUAREM and DAAREM within 12% of the fully solved case; one M-step with N_F = 50 took 12 to 31% of a steady state E-step
+layers with s_max = 10 / layers with s_max = 20 (E-step ratio): P32 1.02 [0.93, 1.12], 0.89 [0.76, 1.03]; P64 1.05 [0.96, 1.17], 1.07 [0.94, 1.22]; F64 0.99 [0.94, 1.04], 0.96 [0.90, 1.02]
+first trained layer at s_max = 10: P32 81% of all entries, 7% of the entries of Fig. 4, P64 83% of all entries, 3% of the entries of Fig. 4
+
+== Preliminary tests: median evaluations / E-steps to alpha = 1.1 ==
+OWLQN: F32 16.5, F64 20, F128 13, P32 19, P64 12  (8 systems per setting)
+SpaRSA: F32 46, F64 68, F128 29.5, P32 42, P64 21.5  (8 systems per setting)
+SQ_ss_K50: F32 9, F64 12, F128 9, P32 15, P64 9  (8 systems per setting)
+
+wrote data/tol_F128.csv (Fig. 3)
+== Fig. 4 and Section V ==
+class medians of the ideal first steps: 1.73 to 8.48
+diagonal / off-diagonal ideal medians: F32 2.26, F64 2.07, F128 0.97, P32 1.24, P64 1.11; largest deviation of the first trained layer from the ideal class medians: 18%
+negative ideal first steps: F32 32%, F64 34%, F128 4%, P32 2%, P64 1%; quartiles of the positive ones: F32 1.94/7.38, F64 2.19/8.18, F128 2.56/7.68, P32 4.19/12.32, P64 3.84/11.62
+rank correlation of missing information with the ideal first steps: F32 0.066, F64 0.057, F128 0.341, P32 0.359, P64 0.339
+rank correlation of the first learned step with the ideal one: F32 0.30, F64 0.29, F128 0.60, P32 0.56, P64 0.45
+median contraction factor over EM iterations 10 to 60: F32 0.958/0.959, F64 0.950/0.957, F128 0.948/0.958, P32 0.956/0.955, P64 0.949/0.959; rank correlation with missing information: F32 -0.008, F64 -0.011, F128 0.005, P32 0.011, P64 -0.016
+rank correlation of the learned steps with the Aitken step, layers 2 to 4: F32 0.06/0.18/0.33, F64 0.12/0.19/0.24, F128 0.24/0.24/0.30, P32 0.28/0.15/0.25, P64 0.16/0.41/0.28
+wrote data/motiv_steps.csv (Fig. 4)
+
+== Fig. 2: F128 test system 13 ==
+prop: alpha 1.1 / 1.01 after 4 / 7 E-steps; distance after 6 E-steps 4.3%; within 0.1% after 31 E-steps; handed over to SQUAREM after E-step 16
+em: alpha 1.1 / 1.01 after 23 / 42 E-steps; distance after 6 E-steps 53.2%; within 0.1% after None E-steps
+sq: alpha 1.1 / 1.01 after 15 / 25 E-steps; distance after 6 E-steps 53.2%; within 0.1% after 52 E-steps
+da: alpha 1.1 / 1.01 after 14 / 20 E-steps; distance after 6 E-steps 38.0%; within 0.1% after 83 E-steps
+wrote data/distR_*.csv (Fig. 2)
+
